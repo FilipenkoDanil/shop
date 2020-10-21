@@ -113,8 +113,9 @@ class Cart
                 return false;
             }
             if ($updateCount) {
-                $orderProduct->count -= $orderProduct->countInOrder;
-                $product->push($product);
+                $product->count -= $orderProduct->countInOrder;
+                $products->push($product);
+
             }
         }
 
