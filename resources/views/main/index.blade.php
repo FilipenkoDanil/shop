@@ -253,7 +253,7 @@
                                                                                                 src="{{Storage::url($product->images[0]['img'])}}"
                                                                                                 alt="Product">
                                                                                         @else
-                                                                                            <img class="primary-img"
+                                                                                            <img class="primary-img img-correct-100"
                                                                                                  src="img/product/small/no_image.png"
                                                                                                  alt="Product">
                                                                                         @endif
