@@ -1593,7 +1593,7 @@ a.posts-read-more:hover {
 }
 .small-product-area .single-product .product-description .product-action {
   background: transparent none repeat scroll 0 0;
-  bottom: -72px;
+  bottom: -59px;
   text-align: left;
   transform: translateX(500px);
 }
