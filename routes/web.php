@@ -10,11 +10,7 @@
 |
 */
 
-Auth::routes([
-    'reset' => false,
-    'confirm' => false,
-    'verify' => false
-]);
+
 
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('get_logout');
@@ -37,6 +33,12 @@ Route::get('/locale/{locale}', 'ChangeController@changeLocale')->name('locale');
 Route::get('/currency/{currencyCode}', 'ChangeController@changeCurrency')->name('currency');
 
 Route::middleware('set_locale')->group(function () {
+
+    Auth::routes([
+        'reset' => false,
+        'confirm' => false,
+        'verify' => false
+    ]);
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/account', "MainController@account")->name('account');
