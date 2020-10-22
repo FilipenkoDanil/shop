@@ -1058,7 +1058,7 @@ p.welcome-msg {
   position: relative;
   text-indent: -9999px;
   width: 18px;
-  z-index: -999;
+  z-index: 5;
 }
 .preview-1 .nivo-controlNav a:hover, .preview-1 .nivo-controlNav a.active {
   background: none;

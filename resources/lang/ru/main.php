@@ -42,4 +42,5 @@ return [
     'search' => 'Поиск',
     'all_products_found' => 'Все найденые товары',
     'all_categories' => 'Все категории',
+    'shopping_now' => 'купить',
 ];

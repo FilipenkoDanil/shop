@@ -43,5 +43,6 @@ return [
     'search' => 'Search',
     'all_products_found' => 'All products found',
     'all_categories' => 'All categories',
+    'shopping_now' => 'shopping now',
 
 ];

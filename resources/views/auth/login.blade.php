@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="area-title">
-                        <h3 class="title-group gfont-1">Авторизация</h3>
+                        <h3 class="title-group gfont-1">@lang('auth.authorization')</h3>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="account-create-box">
-                                <h2 class="box-info">Login Information</h2>
+                                <h2 class="box-info">@lang('auth.login_information')</h2>
                                 <div class="row">
                                     <div class="col-md-4 col-sm-6 col-xs-12">
                                         <div class="single-create">
@@ -49,16 +49,16 @@
                                             @error('password')
                                                  <div class="alert alert-danger">{{$message}}</div>
                                             @enderror
-                                            <p>Пароль <sup>*</sup></p>
+                                            <p>@lang('auth.password') <sup>*</sup></p>
                                             <input class="form-control" type="password" name="password" required/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="submit-area">
-                                <p class="required text-right">* Обязательные поля</p>
-                                <button type="submit" class="btn btn-primary floatright">Войти</button>
-                                <a href="{{route('register')}}" class="float-left"><span><i class="fa fa-angle-double-left"></i></span> Зарегестрироваться</a>
+                                <p class="required text-right">* @lang('auth.required_fields')</p>
+                                <button type="submit" class="btn btn-primary floatright">@lang('main.login')</button>
+                                <a href="{{route('register')}}" class="float-left"><span><i class="fa fa-angle-double-left"></i></span> @lang('auth.register')</a>
                             </div>
                         </div>
                     </div>

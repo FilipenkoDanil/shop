@@ -32,7 +32,7 @@ class CartController extends Controller
         return view('cart.order', compact('order'));
     }
 
-    public function cartAdd(Product $product)
+    public function cartAdd(Request $request, Product $product)
     {
         $result = (new Cart(true))->addProduct($product);
 
@@ -42,10 +42,14 @@ class CartController extends Controller
             session()->flash('warning', 'Товар ' . $product->name . ' в большем количетсве не доступен для заказа' );
         }
 
+        if ($request->ajax()) {
+            $order = (new Cart())->getOrder();
+            return view('ajax.cart', compact('order'))->render();
+        }
         return redirect()->route('cart');
     }
 
-    public function cartRemove(Product $product)
+    public function cartRemove(Request $request, Product $product)
     {
         (new Cart())->removeProduct($product);
         session()->flash('warning', 'Удален товар ' . $product->name );

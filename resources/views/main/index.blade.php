@@ -20,8 +20,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <!-- CATEGORY-MENU-LIST START -->
-                    @include('templates.categories')
-                    <!-- END CATEGORY-MENU-LIST -->
+                @include('templates.categories')
+                <!-- END CATEGORY-MENU-LIST -->
                 </div>
                 <div class="col-md-9">
                     @if(session()->has('success'))
@@ -59,7 +59,8 @@
                                 </div>
                                 <!-- layer 4 -->
                                 <div class="layer-1-4">
-                                    <a href="#" class="title4">shopping now</a>
+                                    <a href="{{route('category', 'phones')}}"
+                                       class="title4">@lang('main.shopping_now')</a>
                                 </div>
                             </div>
                             <!-- direction 2 -->
@@ -76,7 +77,8 @@
                                 </div>
                                 <!-- layer 3 -->
                                 <div class="layer-2-3">
-                                    <a href="#" class="title3">shopping now</a>
+                                    <a href="{{route('category', 'phones')}}"
+                                       class="title3">@lang('main.shopping_now')</a>
                                 </div>
                             </div>
                             <!-- direction 3 -->
@@ -97,7 +99,8 @@
                                 </div>
                                 <!-- layer 4 -->
                                 <div class="layer-3-4">
-                                    <a href="#" class="title4">shopping now</a>
+                                    <a href="{{route('category', 'phones')}}"
+                                       class="title4">@lang('main.shopping_now')</a>
                                 </div>
                             </div>
                         </div>
@@ -114,9 +117,9 @@
             <div class="row">
                 <div class="col-md-3 col-sm-3">
 
-                    @include('templates.bestseller')
+                @include('templates.bestseller')
 
-                    <!-- START SIDEBAR-BANNER -->
+                <!-- START SIDEBAR-BANNER -->
                     <div class="sidebar-banner">
                         <div class="active-sidebar-banner">
                             <div class="single-sidebar-banner">
@@ -253,9 +256,10 @@
                                                                                                 src="{{Storage::url($product->images[0]['img'])}}"
                                                                                                 alt="Product">
                                                                                         @else
-                                                                                            <img class="primary-img img-correct-100"
-                                                                                                 src="img/product/small/no_image.png"
-                                                                                                 alt="Product">
+                                                                                            <img
+                                                                                                class="primary-img img-correct-100"
+                                                                                                src="img/product/small/no_image.png"
+                                                                                                alt="Product">
                                                                                         @endif
                                                                                     </a>
                                                                                 </div>
@@ -271,14 +275,34 @@
                                                                                                 class="old-price">{{ $currencySymbol }} {{$product->old_price}}</span>
                                                                                         @endif
                                                                                     </div>
-                                                                                    <div class="product-action">
-                                                                                        <div class="product-button-2">
-                                                                                            <a href="#"
-                                                                                               data-toggle="tooltip"
-                                                                                               title="@lang('main.add_to_cart')"><i
-                                                                                                    class="fa fa-shopping-cart"></i></a>
+                                                                                    @if($product->isAvailable())
+                                                                                        <div class="product-action">
+                                                                                            <div
+                                                                                                class="product-button-2">
+                                                                                                <form method="POST"
+                                                                                                      action="{{route('cart-add', $product)}}">
+                                                                                                    @csrf
+                                                                                                    <button
+                                                                                                        type="submit">
+                                                                                                        <a href="#"
+                                                                                                           data-toggle="tooltip"
+                                                                                                           title="@lang('main.add_to_cart')"><i
+                                                                                                                class="fa fa-shopping-cart"></i></a>
+                                                                                                    </button>
+                                                                                                </form>
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </div>
+                                                                                    @else
+                                                                                        <div class="product-action">
+                                                                                            <div
+                                                                                                class="product-button-2">
+                                                                                                <a href="#"
+                                                                                                   data-toggle="tooltip"
+                                                                                                   title="@lang('main.available_no')"><i
+                                                                                                        class="fa fa-shopping-cart"></i></a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
                                                                                 </div>
                                                                             </div>
                                                                         </div>

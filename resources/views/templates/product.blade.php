@@ -24,10 +24,14 @@
     <div class="product-action">
         <div class="button-group">
             <div class="product-button">
-                <form method="POST" action="{{route('cart-add', $product)}}">
-                    @csrf
-                    <button><i class="fa fa-shopping-cart"></i> @lang('main.add_to_cart')</button>
-                </form>
+                @if($product->isAvailable())
+                    <form method="POST" action="{{route('cart-add', $product)}}">
+                        @csrf
+                        <button><i class="fa fa-shopping-cart"></i> @lang('main.add_to_cart')</button>
+                    </form>
+                @else
+                    <p>@lang('main.available_no')</p>
+                @endif
             </div>
         </div>
     </div>
