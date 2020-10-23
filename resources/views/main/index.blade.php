@@ -32,7 +32,7 @@
                         <div class="alert alert-warning text-center" role="alert">
                             {{session()->get('warning')}}
                         </div>
-                @endif
+                     @endif
                 <!-- slider -->
                     <div class="slider-area">
                         <div class="bend niceties preview-1">
@@ -321,7 +321,6 @@
                                 </div>
                             </div>
     </section>
-
 
 
 @endsection

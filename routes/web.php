@@ -53,6 +53,7 @@ Route::middleware('set_locale')->group(function () {
 
     Route::get('/about', "StaticController@about")->name('about');
     Route::get('/contact', "StaticController@contact")->name('contact');
+    Route::post('/sendMail', "StaticController@sendMail")->name('sendMail');
     Route::get('/shipping', "StaticController@shipping")->name('shipping');
     Route::get('/warranty', "StaticController@warranty")->name('warranty');
 

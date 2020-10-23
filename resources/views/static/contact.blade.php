@@ -30,10 +30,15 @@
                     <!-- END SMALL-PRODUCT-AREA -->
                 </div>
                 <div class="col-md-9">
+                    @if(session()->has('success'))
+                        <div class="alert alert-success text-center" role="alert">
+                            {{session()->get('success')}}
+                        </div>
+                     @endif
                     <!-- Start Contact-Message -->
                     <div class="contact-message">
                         <fieldset>
-                            <form method="post" action="mail.php">
+                            <form method="post" action="{{route('sendMail')}}">
                                 <legend>@lang('contact.contact_form')</legend>
                                 <div class="form-group form-horizontal">
                                     <div class="row">
@@ -62,6 +67,7 @@
                                 <div class="buttons pull-right">
                                     <input class="btn btn-primary" type="submit" value="@lang('contact.submit')" name="submit"/>
                                 </div>
+                                @csrf
                             </form>
                         </fieldset>
                     </div>
