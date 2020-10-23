@@ -42,6 +42,7 @@ Route::middleware('set_locale')->group(function () {
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/account', "MainController@account")->name('account');
+        Route::post('/account/change-info', "MainController@change")->name('change-acinform');
     });
 
     Route::get('/', "MainController@index")->name('index');
@@ -66,6 +67,7 @@ Route::middleware('set_locale')->group(function () {
             Route::get('/place', "CartController@cartPlace")->name('cart-place');
             Route::post('/confirm', "CartController@cartConfirm")->name('cart-confirm');
             Route::post('/remove/{product}', "CartController@cartRemove")->name('cart-remove');
+            Route::post('/delete/{product}', "CartController@deleteProduct")->name('delete-product');
         });
 
     });

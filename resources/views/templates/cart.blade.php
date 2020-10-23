@@ -35,8 +35,9 @@
 														</span>
                             </div>
                             <div class="pro-del">
-                                <form>
-                                    <a href="#"><i class="fa fa-times"></i></a>
+                                <form id="delete_form" action="{{route('delete-product', $product)}}" method="POST">
+                                    <a href="javascript:{}" onclick="document.getElementById('delete_form').submit();"><i class="fa fa-times"></i></a>
+                                    @csrf
                                 </form>
 
                             </div>

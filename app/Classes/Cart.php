@@ -67,7 +67,7 @@ class Cart
                 return false;
             }
 
-            if($this->order->currency_id != CurrencyConversion::getCurrentCurrencyFromSession()->id){
+            if ($this->order->currency_id != CurrencyConversion::getCurrentCurrencyFromSession()->id) {
                 $this->order->currency_id = CurrencyConversion::getCurrentCurrencyFromSession()->id;
             }
 
@@ -86,9 +86,9 @@ class Cart
 
     public function removeProduct(Product $product)
     {
-        if ($this->order->products->contains($product )) {
+        if ($this->order->products->contains($product)) {
 
-            if($this->order->currency_id != CurrencyConversion::getCurrentCurrencyFromSession()->id){
+            if ($this->order->currency_id != CurrencyConversion::getCurrentCurrencyFromSession()->id) {
                 $this->order->currency_id = CurrencyConversion::getCurrentCurrencyFromSession()->id;
             }
 
@@ -99,8 +99,6 @@ class Cart
                 $pivotRow->countInOrder--;
             }
         }
-
-
     }
 
 

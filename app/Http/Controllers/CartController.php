@@ -24,8 +24,8 @@ class CartController extends Controller
     {
         $cart = new Cart();
         $order = $cart->getOrder();
-        if(!$cart->countAvailable()){
-            session()->flash('warning', 'Товар не доступен для заказа в полном объеме!' );
+        if (!$cart->countAvailable()) {
+            session()->flash('warning', 'Товар не доступен для заказа в полном объеме!');
             return redirect()->route('cart');
         }
 
@@ -36,34 +36,40 @@ class CartController extends Controller
     {
         $result = (new Cart(true))->addProduct($product);
 
-        if($result){
-            session()->flash('success', 'Добавлен товар ' . $product->name );
+        if ($result) {
+            session()->flash('success', 'Добавлен товар ' . $product->name);
         } else {
-            session()->flash('warning', 'Товар ' . $product->name . ' в большем количетсве не доступен для заказа' );
+            session()->flash('warning', 'Товар ' . $product->name . ' в большем количетсве не доступен для заказа');
         }
 
-        if ($request->ajax()) {
-            $order = (new Cart())->getOrder();
-            return view('ajax.cart', compact('order'))->render();
-        }
         return redirect()->route('cart');
     }
 
     public function cartRemove(Request $request, Product $product)
     {
         (new Cart())->removeProduct($product);
-        session()->flash('warning', 'Удален товар ' . $product->name );
+        session()->flash('warning', 'Удален товар ' . $product->name);
 
         return redirect()->route('cart');
+    }
+
+    public function deleteProduct(Product $product)
+    {
+        $order = (new Cart())->getOrder();
+        if ($order->products->contains($product)) {
+            $order->products->pop($product);
+        }
+
+        return redirect()->back();
     }
 
     public function cartConfirm(OrderConfirmRequest $request)
     {
         $email = Auth::check() ? Auth::user()->email : $request->email;
 
-        if((new Cart())->saveOrder($request->name, $request->city, $request->phone, $request->address, $email)){
+        if ((new Cart())->saveOrder($request->name, $request->city, $request->phone, $request->address, $email)) {
             session()->flash('success', 'Ваш заказ принят в обработку!');
-        } else{
+        } else {
             session()->flash('warning', 'Товар не доступен для заказа в полном объеме.');
         }
 

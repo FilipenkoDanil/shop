@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccountRequest;
 use App\Http\Requests\SearchRequest;
 use App\Models\Category;
 use App\Models\Currency;
 use App\Models\Order;
 use App\Models\Product;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -108,6 +110,17 @@ class MainController extends Controller
 
         $orders = Order::where('status', 1)->where('user_id', $user->id)->get();
         return view('auth.account', compact(['user', 'orders']));
+    }
+
+    public function change(AccountRequest $request)
+    {
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $user->save();
+
+        return redirect()->route('account');
     }
 
 }
