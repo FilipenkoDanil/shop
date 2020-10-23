@@ -54,33 +54,33 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label"><sup>*</sup>ФИО</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" name="name" @auth value="{{Auth::user()->name}}" @endauth required />
+                                                            <input type="text" class="form-control" name="name" @auth value="{{Auth::user()->name}}" @endauth value="{{old('name')}}" required />
                                                         </div>
                                                     </div>
 
                                                         <div class="form-group">
                                                             <label class="col-sm-2 control-label"><sup>*</sup>Email</label>
                                                             <div class="col-sm-10">
-                                                                <input type="email" class="form-control" name="email" @auth value="{{Auth::user()->email}}" @endauth required/>
+                                                                <input type="email" class="form-control" name="email" @auth value="{{Auth::user()->email}}" @endauth value="{{old('email')}}" required/>
                                                             </div>
                                                         </div>
 
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label"><sup>*</sup>Адрес</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" name="address" required />
+                                                            <input type="text" class="form-control" name="address" value="{{old('address')}}" required />
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label"><sup>*</sup>Город</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control"name="city" required />
+                                                            <input type="text" class="form-control"name="city" value="{{old('city')}}" required />
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label"><sup>*</sup>Телефон</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" placeholder="0981231234" name="phone" required/>
+                                                            <input type="text" class="form-control" placeholder="+380981231234" name="phone" value="{{old('phone')}}" required/>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Mail\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -18,7 +19,7 @@ class StaticController extends Controller
         return view('static.contact');
     }
 
-    public function sendMail(Request $request)
+    public function sendMail(ContactRequest $request)
     {
         $mailFromName = $request->name;
         $mailFrom = $request->email;

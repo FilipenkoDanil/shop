@@ -40,11 +40,14 @@
                         <fieldset>
                             <form method="post" action="{{route('sendMail')}}">
                                 <legend>@lang('contact.contact_form')</legend>
+                                @foreach($errors->all() as $message)
+                                    <div class="alert alert-danger">{{$message}}</div>
+                                @endforeach
                                 <div class="form-group form-horizontal">
                                     <div class="row">
                                         <label class="col-sm-2 control-label"><sup>*</sup>@lang('contact.your_name')</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="name"/>
+                                            <input type="text" class="form-control" name="name" value="{{old('name')}}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +55,7 @@
                                     <div class="row">
                                         <label class="col-sm-2 control-label"><sup>*</sup>@lang('contact.email')</label>
                                         <div class="col-sm-10">
-                                            <input class="form-control" type="email" name="email"/>
+                                            <input class="form-control" type="email" name="email" value="{{old('email')}}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +63,7 @@
                                     <div class="row">
                                         <label class="col-sm-2 control-label"><sup>*</sup>@lang('contact.message')</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" rows="10" name="message"></textarea>
+                                            <textarea class="form-control" rows="10" name="message">{{old('message')}}</textarea>
                                         </div>
                                     </div>
                                 </div>
