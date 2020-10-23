@@ -176,7 +176,7 @@
                 <div class="col-md-9 col-sm-12">
                     <div class="quick-access">
                         <div class="search-by-category">
-                            <form method="GET" action="{{route('search')}}">
+                            <form method="GET" action="{{route('search')}}" name="form-search" onsubmit='return validate()' >
                                 <div class="search-container">
                                     <select name="cat">
                                         <option selected value="0">@lang('main.all_categories')</option>
@@ -340,6 +340,16 @@
 <!-- main JS
 		============================================ -->
 <script src="/js/main.js"></script>
+
+<script type='text/javascript'>
+    function validate(){
+        var search =document.forms['form-search']['search'].value;
+        if (search.length==0){
+            alert('Заполните поле поиска.');
+            return false;
+        }
+    }
+</script>
 
 @yield('custom_js')
 </body>
