@@ -276,7 +276,7 @@
                                                                                         @endif
                                                                                     </div>
                                                                                     @if($product->isAvailable())
-                                                                                        <div class="product-action">
+                                                                                        <div class="product-action-small">
                                                                                             <div
                                                                                                 class="product-button-2">
                                                                                                 <form method="POST"
@@ -293,7 +293,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     @else
-                                                                                        <div class="product-action">
+                                                                                        <div class="product-action-small">
                                                                                             <div
                                                                                                 class="product-button-2">
                                                                                                 <a href="#"

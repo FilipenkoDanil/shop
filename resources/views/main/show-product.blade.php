@@ -136,14 +136,21 @@
                                     @endif
                                 </div>
 
-                                @if($product->isAvailable())
-                                    <br>
-                                    <form action="{{route('cart-add', $product)}}" method="post" class="form-inline">
+                                <div class="product-quantity form-inline">
+                                    @if($product->isAvailable())
+                                        <br>
+                                        <form action="{{route('cart-add', $product)}}" method="post"
+                                              class="form-inline">
+                                            @csrf
+                                            <button type="submit"
+                                                    class="toch-button toch-add-cart"> @lang('main.add_to_cart')</button>
+                                        </form>
+                                    @endif
+                                    <form action="{{route('add-wish', $product)}}" method="POST">
+                                        <button type="submit" class="toch-button toch-wishlist">Хочу</button>
                                         @csrf
-                                        <button type="submit"
-                                                class="toch-button toch-add-cart"> @lang('main.add_to_cart')</button>
                                     </form>
-                                @endif
+                                </div>
                             </div>
                         </div>
                         <!-- Start Toch-Box -->

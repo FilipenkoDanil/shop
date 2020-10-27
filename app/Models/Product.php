@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\ProductImage;
 use App\Models\Traits\Translatable;
 use App\Services\CurrencyConversion;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -22,7 +23,6 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
-
 
     public function getPriceForCount()
     {

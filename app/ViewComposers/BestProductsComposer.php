@@ -16,7 +16,7 @@ class BestProductsComposer
             return [$pivot->product_id => $pivot->count];
         })->map->sum()->sortByDesc(null)->take(8)->keys()->toArray();
 
-        $bestProducts = Product::find($bestProductIds)->sortBy( function ($product, $key) use ($bestProductIds) {
+        $bestProducts = Product::with('category')->with('images')->find($bestProductIds)->sortBy( function ($product, $key) use ($bestProductIds) {
             return array_search($product->id, $bestProductIds);
         });
         $view->with('bestProducts', $bestProducts);

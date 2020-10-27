@@ -41,8 +41,10 @@ Route::middleware('set_locale')->group(function () {
     ]);
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/account', "MainController@account")->name('account');
-        Route::post('/account/change-info', "MainController@change")->name('change-acinform');
+        Route::get('/account', "AccountController@account")->name('account');
+        Route::post('/account/change-info', "AccountController@change")->name('change-acinform');
+        Route::post('/account/add-wish/{product}', "AccountController@addWish")->name('add-wish');
+        Route::post('/account/remove-wish/{product}', "AccountController@removeWish")->name('remove-wish');
     });
 
     Route::get('/', "MainController@index")->name('index');

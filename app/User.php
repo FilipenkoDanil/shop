@@ -2,13 +2,20 @@
 
 namespace App;
 
+use App\Models\ProductUser;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    public function products()
+    {
+        return $this->hasMany(ProductUser::class);
+    }
 
     /**
      * The attributes that are mass assignable.

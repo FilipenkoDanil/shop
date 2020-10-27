@@ -106,8 +106,8 @@
                                                             </tr>
                                                         </table>
                                                     @empty
-                                                        <h5 class="entry-title text-center">Вы ещё ничего не
-                                                            заказали!</h5>
+                                                        <h3 class="entry-title text-center">Вы ещё ничего не
+                                                            заказали!</h3>
                                                     @endforelse
                                                 </div>
                                                 <!-- End Table -->
@@ -136,7 +136,8 @@
                                                                 class="col-sm-2 control-label"><sup>*</sup>ФИО</label>
                                                             <div class="col-sm-10">
                                                                 <input type="text" class="form-control"
-                                                                       placeholder="@lang('auth.full_name')" value="{{$user->name}}"
+                                                                       placeholder="@lang('auth.full_name')"
+                                                                       value="{{$user->name}}"
                                                                        name="name" required/>
                                                             </div>
                                                         </div>
@@ -161,22 +162,102 @@
                                         </div>
                                     </div>
                                     <!-- End My Address -->
+
+                                    <!-- Start My Wish List -->
+                                    <div class="panel panel_default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-trigger collapsed" data-toggle="collapse"
+                                                   data-parent="#accordion" href="#payment-method">Список желаний <i
+                                                        class="fa fa-caret-down"></i> </a>
+                                            </h4>
+                                        </div>
+                                        <div id="payment-method" class="collapse">
+                                            <div class="panel-body">
+                                                @if(count($wishes) > 0)
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <td class="text-center">Картинка</td>
+                                                                <td class="text-left">Название</td>
+                                                                <td class="text-left">Производитель</td>
+                                                                <td class="text-right">Цена</td>
+                                                                <td class="text-right"></td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @foreach($wishes as $product)
+                                                                <tr>
+                                                                    <td class="text-center">
+                                                                        <a href="{{route('product', [$product->category->alias, $product->alias])}}"><img
+                                                                                class="img-thumbnail img-correct-100"
+                                                                                style="width: 86px"
+                                                                                src="@if(count($product->images) > 0) {{Storage::url($product->images[0]['img'])}} @else /img/product/small/no_image.png @endif "
+                                                                                alt="#"/></a>
+                                                                    </td>
+                                                                    <td class="text-left">
+                                                                        <a href="{{route('product', [$product->category->alias, $product->alias])}}">{{$product->name}}</a>
+                                                                    </td>
+                                                                    <td class="text-left">{{$product->manufacturer}}</td>
+                                                                    <td class="text-right">
+                                                                        <div class="price-box">
+                                                                        <span
+                                                                            class="price">{{ $currencySymbol }} {{$product->price}}</span>
+                                                                            @if($product->price < $product->old_price)
+                                                                                <span
+                                                                                    class="old-price">{{ $currencySymbol }} {{$product->old_price}}</span>
+                                                                            @endif
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-right">
+                                                                        <div
+                                                                            class="btn-block cart-put form-inline change">
+                                                                            <div class="text-center cart-buttons">
+                                                                                @if($product->isAvailable())
+                                                                                    <form class="form-inline"
+                                                                                          action="{{route('cart-add', $product)}}"
+                                                                                          method="POST">
+                                                                                        <button type="submit"
+                                                                                                class="btn btn-primary"
+                                                                                                data-toggle="tooltip"
+                                                                                                title="@lang('cart.add')">
+                                                                                            <i class="fa fa-shopping-cart"></i>
+                                                                                        </button>
+                                                                                        @csrf
+                                                                                    </form>
+                                                                                @endif
+                                                                                <form
+                                                                                    action="{{route('remove-wish', $product)}}"
+                                                                                    method="POST">
+                                                                                    <button class="btn btn-danger"
+                                                                                            data-toggle="tooltip"
+                                                                                            title="@lang('cart.delete')">
+                                                                                        <i class="fa fa-minus"></i>
+                                                                                    </button>
+                                                                                    @csrf
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                @else
+                                                    <h3 class="text-center">Вы ещё ничего не добавили</h3>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End My Wish List -->
                                 </div>
                                 <!-- Accordion end -->
                             </div>
                         </div>
                     </div>
                     <!-- End Shopping-Cart -->
-
-                    <!-- My-Account-Area start -->
-                    <div class="my-account-area">
-                        <div class="row">
-                            <div class="col-md-6">
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- My-Account-Area end -->
                 </div>
             </div>
         </div>
