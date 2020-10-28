@@ -24,9 +24,14 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function getPriceForCount()
     {
-        if(!is_null($this->pivot)){
+        if (!is_null($this->pivot)) {
             return $this->pivot->count * $this->pivot->price;
         }
         return $this->price;
@@ -45,6 +50,18 @@ class Product extends Model
     public function getOldPriceAttribute($value)
     {
         return round(CurrencyConversion::convert($value), 2);
+    }
+
+    public function updateRating()
+    {
+        if (count($this->comments) > 0) {
+            $this->rating = round($this->comments->sum('rating') / count($this->comments));
+        } else {
+            $this->rating = 0;
+        }
+        $this->save();
+
+        return true;
     }
 
 }

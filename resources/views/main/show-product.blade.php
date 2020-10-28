@@ -121,7 +121,10 @@
                             <div class="col-md-7 col-sm-7 col-xs-12">
                                 <h2 class="title-product">{{$product->name}}</h2>
                                 <div class="about-toch-prond">
-
+                                    <p>
+											@include('templates.rating')
+                                        <a href="#description">отзывы ({{count($product->comments)}})</a>
+                                    </p>
                                     <hr/>
                                     <p class="short-description">{{mb_substr($product->__('description'), 0, 350)}}
                                         ..</p>
@@ -163,6 +166,8 @@
                                             <li role="presentation" class=" active"><a href="#description" role="tab"
                                                                                        data-toggle="tab">@lang('main.description')</a>
                                             </li>
+                                            <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Отзывы
+                                                    ({{count($product->comments)}})</a></li>
                                         </ul>
                                     </div>
                                     <!-- End Toch-Menu -->
@@ -179,7 +184,90 @@
                                             </div>
                                         </div>
                                         <!-- End display-description -->
+                                        <div role="tabpanel" class="tab-pane fade" id="reviews">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="toch-reviews">
+                                                        <div class="toch-table">
+                                                            @foreach($product->comments()->with('user')->get() as $comment)
 
+                                                                <table class="table table-striped table-bordered">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td><strong>{{$comment->user->name}}</strong>
+                                                                        </td>
+                                                                        <td class="text-right">
+                                                                            <div
+                                                                                class="btn-block cart-put form-inline change">
+                                                                                <strong>{{date('d/m/Y', strtotime($comment->created_at))}}</strong>
+                                                                                @auth
+                                                                                    @if(Auth::id() == $comment->user->id)
+                                                                                        <form class="form-inline"
+                                                                                              id="delete_comment_{{$comment->id}}" action="{{route('delete-comment', $comment)}}" method="POST">
+                                                                                            <a href="javascript:{}"
+                                                                                               onclick="document.getElementById('delete_comment_{{$comment->id}}').submit();">x</a>
+                                                                                            @csrf
+                                                                                        </form>
+                                                                                    @endif
+                                                                                @endauth
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <p>{{$comment->comment}}</p>
+                                                                            @for($i = 0; $i<5; $i++)
+                                                                                @if($i < $comment->rating)
+                                                                                    <span><i
+                                                                                            class="fa fa-star"></i></span>
+                                                                                @else
+                                                                                    <span><i
+                                                                                            class="fa fa-star-o"></i></span>
+                                                                                @endif
+                                                                            @endfor
+                                                                        </td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            @endforeach
+                                                        </div>
+                                                        <br>
+                                                        <div class="toch-review-title">
+                                                            <h2>Оставить отзыв</h2>
+                                                        </div>
+                                                        <form action="{{route('add-comment', $product)}}" method="POST">
+                                                            <div class="review-message">
+                                                                <div class="col-xs-12">
+                                                                    <p>
+                                                                        <textarea name="comment" class="form-control"
+                                                                                  placeholder="Писать здесь" required></textarea>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="get-rating">
+                                                                    <span><sup>*</sup>Рейтинг </span>
+                                                                    <br>
+                                                                    Плохо
+                                                                    <input type="radio" value="1" name="rating"
+                                                                           required/>
+                                                                    <input type="radio" value="2" name="rating"/>
+                                                                    <input type="radio" value="3" name="rating"/>
+                                                                    <input type="radio" value="4" name="rating"/>
+                                                                    <input type="radio" value="5" name="rating"/>
+                                                                    Хорошо
+                                                                </div>
+                                                                <div class="buttons clearfix">
+                                                                    <button type="submit"
+                                                                            class="btn btn-primary pull-right">
+                                                                        Отправить
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                            @csrf
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

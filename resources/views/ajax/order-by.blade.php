@@ -26,6 +26,7 @@
                                 <span class="old-price">{{ $currencySymbol }} {{$product->old_price}}</span>
                             @endif
                         </div>
+                        @include('templates.rating')
                     </div>
                     <div class="product-action">
                         <div class="button-group">

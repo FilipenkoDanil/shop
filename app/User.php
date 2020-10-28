@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function products()
+    public function wishProducts()
     {
         return $this->hasMany(ProductUser::class);
     }

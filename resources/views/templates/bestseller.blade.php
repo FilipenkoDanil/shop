@@ -37,6 +37,7 @@
                                             class="old-price">{{ $currencySymbol }} {{$bestProduct->old_price}}</span>
                                     @endif
                                 </div>
+                                @include('templates.rating', ['product' => $bestProduct])
                             </div>
                         </div>
                         <!-- End Single-Product -->

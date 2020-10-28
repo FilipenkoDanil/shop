@@ -45,6 +45,8 @@ Route::middleware('set_locale')->group(function () {
         Route::post('/account/change-info', "AccountController@change")->name('change-acinform');
         Route::post('/account/add-wish/{product}', "AccountController@addWish")->name('add-wish');
         Route::post('/account/remove-wish/{product}', "AccountController@removeWish")->name('remove-wish');
+        Route::post('/product/{product}/add-comment', "CommentController@addComment")->name('add-comment');
+        Route::post('/product/delete-comment/{comment}', "CommentController@deleteComment")->name('delete-comment');
     });
 
     Route::get('/', "MainController@index")->name('index');

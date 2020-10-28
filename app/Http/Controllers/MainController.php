@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchRequest;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
@@ -92,10 +94,9 @@ class MainController extends Controller
 
     public function product($catAlias, $productAlias)
     {
-        $product = Product::where('alias', $productAlias)->first();
+        $product = Product::where('alias', $productAlias)->with('comments')->first();
         $productRec = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->with('category')->with('images')->get()->take(6);
         return view('main.show-product', compact(['product', 'productRec']));
     }
-
 
 }
