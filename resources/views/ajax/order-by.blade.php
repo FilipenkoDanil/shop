@@ -36,8 +36,16 @@
                                     <button><i class="fa fa-shopping-cart"></i> @lang('main.add_to_cart')</button>
                                 </form>
                             </div>
+                            <div class="product-button-2">
+                                <form id="wish_form_{{$product->id}}" method="POST" action="{{route('add-wish', $product)}}">
+                                    @csrf
+                                    <a href="javascript:{}" onclick="document.getElementById('wish_form_{{$product->id}}').submit();"
+                                       data-toggle="tooltip" title="Хочу"><i class="fa fa-heart-o"></i></a>
+                                </form>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
     @endforeach

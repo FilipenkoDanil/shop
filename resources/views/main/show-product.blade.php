@@ -232,38 +232,43 @@
                                                             @endforeach
                                                         </div>
                                                         <br>
-                                                        <div class="toch-review-title">
-                                                            <h2>Оставить отзыв</h2>
-                                                        </div>
-                                                        <form action="{{route('add-comment', $product)}}" method="POST">
-                                                            <div class="review-message">
-                                                                <div class="col-xs-12">
-                                                                    <p>
+                                                        @auth
+                                                            <div class="toch-review-title">
+                                                                <h2>Оставить отзыв</h2>
+                                                            </div>
+                                                            <form action="{{route('add-comment', $product)}}" method="POST">
+                                                                <div class="review-message">
+                                                                    <div class="col-xs-12">
+                                                                        <p>
                                                                         <textarea name="comment" class="form-control"
                                                                                   placeholder="Писать здесь" required></textarea>
-                                                                    </p>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="get-rating">
+                                                                        <span><sup>*</sup>Рейтинг </span>
+                                                                        <br>
+                                                                        Плохо
+                                                                        <input type="radio" value="1" name="rating"
+                                                                               required/>
+                                                                        <input type="radio" value="2" name="rating"/>
+                                                                        <input type="radio" value="3" name="rating"/>
+                                                                        <input type="radio" value="4" name="rating"/>
+                                                                        <input type="radio" value="5" name="rating"/>
+                                                                        Хорошо
+                                                                    </div>
+                                                                    <div class="buttons clearfix">
+                                                                        <button type="submit"
+                                                                                class="btn btn-primary pull-right">
+                                                                            Отправить
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="get-rating">
-                                                                    <span><sup>*</sup>Рейтинг </span>
-                                                                    <br>
-                                                                    Плохо
-                                                                    <input type="radio" value="1" name="rating"
-                                                                           required/>
-                                                                    <input type="radio" value="2" name="rating"/>
-                                                                    <input type="radio" value="3" name="rating"/>
-                                                                    <input type="radio" value="4" name="rating"/>
-                                                                    <input type="radio" value="5" name="rating"/>
-                                                                    Хорошо
-                                                                </div>
-                                                                <div class="buttons clearfix">
-                                                                    <button type="submit"
-                                                                            class="btn btn-primary pull-right">
-                                                                        Отправить
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                            @csrf
-                                                        </form>
+                                                                @csrf
+                                                            </form>
+                                                        @endauth
+                                                        @guest
+                                                            <h5 class="text-center"><a href="{{route('login')}}">Войдите, что бы оставить отзыв</a></h5>
+                                                        @endguest
                                                     </div>
                                                 </div>
                                             </div>
