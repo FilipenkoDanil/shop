@@ -23,7 +23,9 @@ Route::group(
         Route::resource('categories', 'CategoryController');
         Route::resource('products', 'ProductController');
         Route::resource('product-images', 'ProductImageController');
-        //админ-блок
+        Route::get('/comments', "CommentController@index")->name('comments');
+        Route::post('/comment/publish/{comment}', "CommentController@publish")->name('admin-publish-comment');
+        Route::post('/comment/delete/{comment}', "CommentController@destroy")->name('admin-delete-comment');
     });
 
 });

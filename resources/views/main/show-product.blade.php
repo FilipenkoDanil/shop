@@ -123,7 +123,7 @@
                                 <div class="about-toch-prond">
                                     <p>
 											@include('templates.rating')
-                                        <a href="#description">@lang('main.reviews') ({{count($product->comments)}})</a>
+                                        <a href="#description">@lang('main.reviews') ({{count($product->comments->where('status', 1))}})</a>
                                     </p>
                                     <hr/>
                                     <p class="short-description">{{mb_substr($product->__('description'), 0, 350)}}
@@ -167,7 +167,7 @@
                                                                                        data-toggle="tab">@lang('main.description')</a>
                                             </li>
                                             <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">@lang('main.reviews')
-                                                    ({{count($product->comments)}})</a></li>
+                                                    ({{count($product->comments->where('status', 1))}})</a></li>
                                         </ul>
                                     </div>
                                     <!-- End Toch-Menu -->
@@ -189,7 +189,7 @@
                                                 <div class="col-xs-12">
                                                     <div class="toch-reviews">
                                                         <div class="toch-table">
-                                                            @foreach($product->comments()->with('user')->get() as $comment)
+                                                            @foreach($product->comments()->where('status', 1)->with('user')->get() as $comment)
 
                                                                 <table class="table table-striped table-bordered">
                                                                     <tbody>
@@ -338,10 +338,37 @@
             </div>
         </div>
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('main.thanks') </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{session()->get('success')}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ок</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('custom_js')
     <!-- Image zoom js
 		============================================ -->
     <script src="/js/imagezoom.js"></script>
+
+    @if(session()->has('success'))
+        <script>
+            $(document).ready(function(){
+                $("#myModal").modal();
+            });
+        </script>
+    @endif
 @endsection

@@ -9,7 +9,6 @@
 @section('content')
 
 
-
     <!-- Start Mobile-menu -->
     @include('templates.mobile-categories')
     <!-- End Mobile-menu -->
@@ -324,3 +323,4 @@
 
 
 @endsection
+

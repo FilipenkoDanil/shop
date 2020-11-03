@@ -94,7 +94,8 @@ class MainController extends Controller
 
     public function product($catAlias, $productAlias)
     {
-        $product = Product::where('alias', $productAlias)->with('comments')->first();
+        $product = Product::where('alias', $productAlias)->with('images')->with('comments')->first();
+        //dd($product);
         $productRec = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->with('category')->with('images')->get()->take(6);
         return view('main.show-product', compact(['product', 'productRec']));
     }

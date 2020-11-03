@@ -18,17 +18,14 @@ class CommentController extends Controller
         $comment->rating = $request->rating;
         $comment->save();
 
-        $product->updateRating();
-
+        session()->flash('success', __('main.add_comment'));
         return redirect()->back();
     }
 
     public function deleteComment(Comment $comment)
     {
         $comment->delete();
-
-        $product = $comment->product;
-        $product->updateRating();
+        $comment->product->updateRating();
 
         return redirect()->back();
     }

@@ -56,7 +56,8 @@ return [
     'nothing_here' => 'There is nothing here yet :(',
     'fill_search' => 'Fill in the search field.',
     'related_products' => 'RELATED PRODUCTS',
-
+    'add_comment' => 'Your comment will be added after verification by the administration.',
+    'thanks' => 'Thanks!',
 
 
 

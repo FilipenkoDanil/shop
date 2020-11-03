@@ -54,8 +54,8 @@ class Product extends Model
 
     public function updateRating()
     {
-        if (count($this->comments) > 0) {
-            $this->rating = round($this->comments->sum('rating') / count($this->comments));
+        if (count($this->comments->where('status', 1)) > 0) {
+            $this->rating = round($this->comments->where('status', 1)->sum('rating') / count($this->comments->where('status', 1)));
         } else {
             $this->rating = 0;
         }
