@@ -353,7 +353,7 @@
     function validate(){
         var search =document.forms['form-search']['search'].value;
         if (search.length==0){
-            alert('Заполните поле поиска.');
+            alert('@lang('main.fill_search')');
             return false;
         }
     }

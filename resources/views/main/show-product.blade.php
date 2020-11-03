@@ -123,7 +123,7 @@
                                 <div class="about-toch-prond">
                                     <p>
 											@include('templates.rating')
-                                        <a href="#description">отзывы ({{count($product->comments)}})</a>
+                                        <a href="#description">@lang('main.reviews') ({{count($product->comments)}})</a>
                                     </p>
                                     <hr/>
                                     <p class="short-description">{{mb_substr($product->__('description'), 0, 350)}}
@@ -150,7 +150,7 @@
                                         </form>
                                     @endif
                                     <form action="{{route('add-wish', $product)}}" method="POST">
-                                        <button type="submit" class="toch-button toch-wishlist">Хочу</button>
+                                        <button type="submit" class="toch-button toch-wishlist">@lang('main.wishlist')</button>
                                         @csrf
                                     </form>
                                 </div>
@@ -166,7 +166,7 @@
                                             <li role="presentation" class=" active"><a href="#description" role="tab"
                                                                                        data-toggle="tab">@lang('main.description')</a>
                                             </li>
-                                            <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">Отзывы
+                                            <li role="presentation"><a href="#reviews" role="tab" data-toggle="tab">@lang('main.reviews')
                                                     ({{count($product->comments)}})</a></li>
                                         </ul>
                                     </div>
@@ -234,32 +234,32 @@
                                                         <br>
                                                         @auth
                                                             <div class="toch-review-title">
-                                                                <h2>Оставить отзыв</h2>
+                                                                <h2>@lang('main.write_review')</h2>
                                                             </div>
                                                             <form action="{{route('add-comment', $product)}}" method="POST">
                                                                 <div class="review-message">
                                                                     <div class="col-xs-12">
                                                                         <p>
                                                                         <textarea name="comment" class="form-control"
-                                                                                  placeholder="Писать здесь" required></textarea>
+                                                                                  placeholder="@lang('main.write_here')" required></textarea>
                                                                         </p>
                                                                     </div>
                                                                     <div class="get-rating">
-                                                                        <span><sup>*</sup>Рейтинг </span>
+                                                                        <span><sup>*</sup>@lang('main.rating') </span>
                                                                         <br>
-                                                                        Плохо
+                                                                        @lang('main.bad')
                                                                         <input type="radio" value="1" name="rating"
                                                                                required/>
                                                                         <input type="radio" value="2" name="rating"/>
                                                                         <input type="radio" value="3" name="rating"/>
                                                                         <input type="radio" value="4" name="rating"/>
                                                                         <input type="radio" value="5" name="rating"/>
-                                                                        Хорошо
+                                                                        @lang('main.good')
                                                                     </div>
                                                                     <div class="buttons clearfix">
                                                                         <button type="submit"
                                                                                 class="btn btn-primary pull-right">
-                                                                            Отправить
+                                                                            @lang('main.continue')
                                                                         </button>
                                                                     </div>
                                                                 </div>
@@ -267,7 +267,7 @@
                                                             </form>
                                                         @endauth
                                                         @guest
-                                                            <h5 class="text-center"><a href="{{route('login')}}">Войдите, что бы оставить отзыв</a></h5>
+                                                            <h5 class="text-center"><a href="{{route('login')}}">@lang('main.sign_write_review')</a></h5>
                                                         @endguest
                                                     </div>
                                                 </div>
@@ -285,7 +285,7 @@
                                     <!-- Start Product-Menu -->
                                     <div class="product-menu">
                                         <div class="product-title">
-                                            <h3 class="title-group-2 gfont-1">Может заинтересовать</h3>
+                                            <h3 class="title-group-2 gfont-1">@lang('main.related_products')</h3>
                                         </div>
                                     </div>
                                 </div>

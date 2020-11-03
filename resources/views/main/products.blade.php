@@ -84,7 +84,7 @@
                                                 @empty
                                                     <div class="col-md-12 text-center">
                                                         <br>
-                                                        <h3>Здесь пока ничего нет :(</h3>
+                                                        <h3>@lang('main.nothing_here')</h3>
                                                     </div>
                                             @endforelse
                                             <!-- End Single-Product -->

@@ -44,5 +44,20 @@ return [
     'all_products_found' => 'All products found',
     'all_categories' => 'All categories',
     'shopping_now' => 'shopping now',
+    'sign_write_review' => 'Sign in to write a review',
+    'wishlist' => 'Wishlist',
+    'reviews' => 'Reviews',
+    'write_review' => 'Write a review',
+    'rating' => 'Rating',
+    'bad' => 'Bad',
+    'good' => 'Good',
+    'continue' => 'Continue',
+    'write_here' => 'Write here',
+    'nothing_here' => 'There is nothing here yet :(',
+    'fill_search' => 'Fill in the search field.',
+    'related_products' => 'RELATED PRODUCTS',
+
+
+
 
 ];

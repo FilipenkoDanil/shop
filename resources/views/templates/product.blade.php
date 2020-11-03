@@ -38,7 +38,7 @@
                 <form id="wish_form_{{$product->id}}" method="POST" action="{{route('add-wish', $product)}}">
                     @csrf
                     <a href="javascript:{}" onclick="document.getElementById('wish_form_{{$product->id}}').submit();"
-                       data-toggle="tooltip" title="Хочу"><i class="fa fa-heart-o"></i></a>
+                       data-toggle="tooltip" title="@lang('main.wishlist')"><i class="fa fa-heart-o"></i></a>
                 </form>
             </div>
         </div>

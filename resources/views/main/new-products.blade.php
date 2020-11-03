@@ -50,18 +50,20 @@
                                         <h3 class="title-group-3 gfont-1">@lang('main.new_product')</h3>
                                     </div>
                                 </div>
-                                <div class="product-filter">
-                                    <div class="sort">
-                                        <label>@lang('main.sort'):</label>
-                                        <select id="product_sorting_btn">
-                                            <option value="default">Стандартно</option>
-                                            <option value="name-a-z">Названию (A - Я)</option>
-                                            <option value="name-z-a">Названию (Я - А)</option>
-                                            <option value="price-min-high">Цене (Меньше > Больше)</option>
-                                            <option value="price-high-min">Цене (Больше < Меньше)</option>
-                                        </select>
+                                @if(count($products) > 0)
+                                    <div class="product-filter">
+                                        <div class="sort">
+                                            <label>@lang('main.sort'):</label>
+                                            <select id="product_sorting_btn">
+                                                <option value="default">Стандартно</option>
+                                                <option value="name-a-z">Названию (A - Я)</option>
+                                                <option value="name-z-a">Названию (Я - А)</option>
+                                                <option value="price-min-high">Цене (Меньше > Больше)</option>
+                                                <option value="price-high-min">Цене (Больше < Меньше)</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
+                            @endif
 
                                 <!-- End Product-Menu -->
                                 <div class="clear"></div>
@@ -76,11 +78,16 @@
                                         <div role="tabpanel" class="tab-pane fade in  active" id="display-1-2">
                                             <div class="row products">
                                                 <!-- Start Single-Product -->
-                                                @foreach($products as $product)
+                                                @forelse($products as $product)
                                                     <div class="col-md-3 col-sm-4 col-xs-12">
                                                         @include('templates.product')
                                                     </div>
-                                            @endforeach
+                                                @empty
+                                                    <div class="col-md-12 text-center">
+                                                        <br>
+                                                        <h3>@lang('main.nothing_here')</h3>
+                                                    </div>
+                                                @endforelse
                                             <!-- End Single-Product -->
 
                                             </div>
@@ -124,8 +131,8 @@
 
 @section('custom_js')
     <script>
-        $(document).ready(function (){
-            $('#product_sorting_btn').change(function (){
+        $(document).ready(function () {
+            $('#product_sorting_btn').change(function () {
                 let orderBy = $(this).val()
 
                 $.ajax({
