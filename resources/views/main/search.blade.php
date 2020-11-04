@@ -60,7 +60,7 @@
                                                 @empty
                                                     <div class="col-md-12 text-center">
                                                         <br>
-                                                        <h3>Ничего не найдено.</h3>
+                                                        <h3>@lang('main.not_found')</h3>
                                                     </div>
                                                 @endforelse
                                             </div>

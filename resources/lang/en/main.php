@@ -58,6 +58,7 @@ return [
     'related_products' => 'RELATED PRODUCTS',
     'add_comment' => 'Your comment will be added after verification by the administration.',
     'thanks' => 'Thanks!',
+    'not_found' => 'Not found.',
 
 
 

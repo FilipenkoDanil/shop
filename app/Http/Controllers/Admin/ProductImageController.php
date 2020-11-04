@@ -17,7 +17,7 @@ class ProductImageController extends Controller
      */
     public function index()
     {
-        $productImages = ProductImage::paginate(20);
+        $productImages = ProductImage::with('product')->paginate(20);
 
         return view('auth.product-image.index', compact('productImages'));
     }

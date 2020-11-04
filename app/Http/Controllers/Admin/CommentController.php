@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::where('status', 0)->get();
+        $comments = Comment::with('user')->with('product')->where('status', 0)->get();
 
         return view('auth.comments.index', compact('comments'));
     }

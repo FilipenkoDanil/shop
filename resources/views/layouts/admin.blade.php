@@ -33,7 +33,7 @@
                     <li><a href="{{route('products.index')}}">Товары</a></li>
                     <li><a href="{{route('product-images.index')}}">Изображения</a></li>
                     <li><a href="{{route('home')}}">Заказы</a></li>
-                    <li><a href="{{route('comments')}}">Комментарии<span class="badge badge-danger">{{count(\App\Models\Comment::where('status', 0)->get())}}</span></a></li>
+                    <li><a href="{{route('comments')}}">Комментарии<span class="badge badge-danger">{{$newComments}}</span></a></li>
                 </ul>
 
 
