@@ -30,24 +30,24 @@
                     </th>
                 </tr>
                 @foreach($orders as $order)
-                <tr>
-                    <td>{{$order->id}}</td>
-                    <td>{{$order->name}}</td>
-                    <td>{{$order->phone}}</td>
-                    <td>{{$order->updated_at->format('H:i d/m/Y')}}</td>
-                    <td>{{$order->currency->symbol}}{{$order->sum}}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <a class="btn btn-success" type="button"
-                               href="{{route('order.show', $order)}}"
-                            >Открыть</a>
-                        </div>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{$order->id}}</td>
+                        <td>{{$order->name}}</td>
+                        <td>{{$order->phone}}</td>
+                        <td>{{$order->updated_at->format('H:i d/m/Y')}}</td>
+                        <td>{{$order->currency->symbol}}{{$order->sum}}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-success" type="button"
+                                   href="{{route('order.show', $order)}}"
+                                >Открыть</a>
+                            </div>
+                        </td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>
-
+            {{$orders->links()}}
         </div>
     </div>
 

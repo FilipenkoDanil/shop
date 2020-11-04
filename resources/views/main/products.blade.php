@@ -55,11 +55,11 @@
                                         <div class="sort">
                                             <label>@lang('main.sort'):</label>
                                             <select id="product_sorting_btn">
-                                                <option value="default">Стандартно</option>
-                                                <option value="name-a-z">Названию (A - Я)</option>
-                                                <option value="name-z-a">Названию (Я - А)</option>
-                                                <option value="price-min-high">Цене (Меньше > Больше)</option>
-                                                <option value="price-high-min">Цене (Больше < Меньше)</option>
+                                                <option value="default">@lang('sort.default')</option>
+                                                <option value="name-a-z">@lang('sort.name_a_z')</option>
+                                                <option value="name-z-a">@lang('sort.name_z_a')</option>
+                                                <option value="price-min-high">@lang('sort.price_min_high')</option>
+                                                <option value="price-high-min">@lang('sort.price_high_min')</option>
                                             </select>
                                         </div>
                                     </div>
